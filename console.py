@@ -134,7 +134,7 @@ class HBNBCommand(cmd.Cmd):
             }
             value = value.translate(table)
             setattr(new_instance, key, value)
-        new_instance.save()  # Save to storages
+        new_instance.save()  # Save to storage
 
     def help_create(self):
         """ Help information for the create method """
