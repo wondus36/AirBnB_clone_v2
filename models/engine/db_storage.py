@@ -4,6 +4,7 @@ from models.base_model import Base
 from models.city import City
 from models.state import State
 from sqlalchemy.orm import sessionmaker, scoped_session
+from models.user import User
 
 
 class DBStorage:
@@ -35,6 +36,7 @@ class DBStorage:
         classes = {
             "City": City,
             "State": State,
+            "User": User,
         }
         result = {}
         query_rows = []
