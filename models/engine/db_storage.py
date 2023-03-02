@@ -1,12 +1,8 @@
 from sqlalchemy import create_engine
 from os import getenv
-from models.amenity import Amenity
 from models.base_model import Base
 from models.city import City
-from models.place import Place
-from models.review import Review
 from models.state import State
-from models.user import User
 from sqlalchemy.orm import sessionmaker, scoped_session
 
 
@@ -37,12 +33,8 @@ class DBStorage:
         query for all objects on the current database session
         '''
         classes = {
-            "User": User,
-            "State": State,
             "City": City,
-            "Amenity": Amenity,
-            "Place": Place,
-            "Review": Review,
+            "State": State,
         }
         result = {}
         query_rows = []
@@ -82,7 +74,7 @@ class DBStorage:
         - create all tables in the database
         - create the current database session from the engine
         '''
-        Base.metadata.create_engine(self.__engine)
+        Base.metadata.create_all(self.__engine)
         session_factory = sessionmaker(
             bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
