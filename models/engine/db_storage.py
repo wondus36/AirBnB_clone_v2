@@ -7,6 +7,7 @@ from models.review import Review
 from models.state import State
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.user import User
+from models.amenity import Amenity
 
 
 class DBStorage:
@@ -41,6 +42,7 @@ class DBStorage:
             "User": User,
             "Place": Place,
             "Review": Review,
+            "Amenity": Amenity,
         }
         result = {}
         query_rows = []
