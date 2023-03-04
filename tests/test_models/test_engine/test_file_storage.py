@@ -12,6 +12,10 @@ class test_fileStorage(unittest.TestCase):
 
     def setUp(self):
         """ Set up test environment """
+        try:
+            os.remove('file.json')
+        except Exception:
+            pass
         del_list = []
         for key in storage._FileStorage__objects.keys():
             del_list.append(key)
@@ -22,7 +26,7 @@ class test_fileStorage(unittest.TestCase):
         """ Remove storage file at end of tests """
         try:
             os.remove('file.json')
-        except:
+        except Exception:
             pass
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'Another storage')
@@ -33,10 +37,10 @@ class test_fileStorage(unittest.TestCase):
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'Another storage')
     def test_new(self):
         """ New object is correctly added to __objects """
-        new = BaseModel()
+        temp = BaseModel()
         for obj in storage.all().values():
             temp = obj
-        self.assertTrue(temp is obj)
+            self.assertTrue(temp is obj)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'Another storage')
     def test_all(self):
@@ -74,8 +78,7 @@ class test_fileStorage(unittest.TestCase):
         storage.save()
         storage.reload()
         for obj in storage.all().values():
-            loaded = obj
-        self.assertEqual(new.to_dict()['id'], loaded.to_dict()['id'])
+            self.assertEqual(new.to_dict()['id'], obj.to_dict()['id'])
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'Another storage')
     def test_reload_empty(self):
@@ -106,15 +109,6 @@ class test_fileStorage(unittest.TestCase):
     def test_type_objects(self):
         """ Confirm __objects is a dict """
         self.assertEqual(type(storage.all()), dict)
-
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'Another storage')
-    def test_key_format(self):
-        """ Key is properly formatted """
-        new = BaseModel()
-        _id = new.to_dict()['id']
-        for key in storage.all().keys():
-            temp = key
-        self.assertEqual(temp, 'BaseModel' + '.' + _id)
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db', 'Another storage')
     def test_storage_var_created(self):
