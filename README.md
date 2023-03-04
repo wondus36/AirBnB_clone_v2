@@ -2,12 +2,20 @@
 
 *Group project* *Python* *OOP* *Back-end* *SQL* *MySQL* *ORM* *SQLAlchemy*
 
-<br>
+## Usage
+- First clone this repository.
 
-### Repository Contents by Project Task
-
-| Tasks | Files | Description |
-| ----- | ----- | ------ |
-| 0: Authors File | [AUTHORS](https://github.com/sixtusagbo/AirBnB_clone_v2/blob/master/AUTHORS) | Project authors |
-| 0.5: Pycodestyle | N/A | All code is pycodestyle compliant|
-| 1: Bug free! | [/tests](https://github.com/sixtusagbo/AirBnB_clone_v2/tree/master/tests) | All class-defining modules are unittested|
+- To run it:
+  - Using `DBStorage`, Locate the "console.py" file and run it as follows:
+  ```
+  $ HBNB_MYSQL_USER=hbnb_dev HBNB_MYSQL_PWD=hbnb_dev_pwd HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_dev_db HBNB_TYPE_STORAGE=db ./console.py
+  ```
+  - Using `FileStorage`, Locate the "console.py" file and run it as follows:
+  ```
+  $ ./console.py
+  ```
+- When this command is run the following prompt should appear:
+```
+(hbnb)
+```
+- This prompt designates you are in the "HBnB" console. There are a variety of commands available within the console program.
