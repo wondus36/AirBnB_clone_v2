@@ -1,5 +1,8 @@
-# 0x02. AirBnB clone - MySQL
-*Group project* *Python* *OOP* *Back-end* *SQL* *MySQL* *ORM* *SQLAlchemy*
+# 0x02. AirBnB clone v2
+  - MySQL
+    > *Group project* *Python* *OOP* *Back-end* *SQL* *MySQL* *ORM* *SQLAlchemy*
+  - Web Framework
+    > *Python* *Back-end* *Webserver* *Flask*
 
 ## Usage
 - First clone this repository.
