@@ -49,12 +49,12 @@ class DBStorage:
 
         if cls:
             '''Query for all objects belonging to cls'''
-            for name, value in classes.items():
-                if name == cls:
-                    query_rows = self.__session.query(value)
-                    for obj in query_rows:
-                        key = '{}.{}'.format(name, obj.id)
-                        result[key] = obj
+            if type(cls) is str:
+                cls = eval(cls)
+            query_rows = self.__session.query(cls)
+            for obj in query_rows:
+                key = '{}.{}'.format(type(obj).__name__, obj.id)
+                result[key] = obj
             return result
         else:
             '''Query for all types of objects'''
@@ -87,3 +87,10 @@ class DBStorage:
             bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """
+        Because SQLAlchemy doesn't reload his `Session`
+        when it's time to insert new data, we force it to!
+        """
+        self.__session.close()
