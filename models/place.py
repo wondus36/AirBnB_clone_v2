@@ -43,11 +43,13 @@ class Place(BaseModel, Base):
         def reviews(self):
             '''FileStorage relationship between Place and Review'''
             from models import storage
+            from models.review import Review
 
             review_list = []
-            review_dict = storage.all()
-            for value in review_dict.values():
-                review_list.append(value)
+            review_dict = storage.all(Review)
+            for review in review_dict.values():
+                if review.place_id == self.id:
+                    review_list.append(review)
             return review_list
 
         @property
